@@ -1,0 +1,14 @@
+table {
+    border: 2px solid;
+    margin: 5%;
+}
+
+td {
+    border: 1px solid;
+    padding: 10%;
+    text-align: center;
+}
+
+button {
+    margin: 0 5%;
+}
