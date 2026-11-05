@@ -7,9 +7,11 @@ const emit = defineEmits(['emittedReset', 'emittedRoll']);
 
 const rollDice = () => {
     emit('emittedReset');
-    for (let i = 0; i < 8; i++) {
+    const diceRound = [];
+    for (let i = 0; i < 5; i++) {
         const numberRolled = Math.floor(Math.random() * 6 + 1);
-        emit('emittedRoll', numberRolled);
+        diceRound.push(numberRolled);
     }
+    emit('emittedRoll', diceRound);
 };
 </script>
