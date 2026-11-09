@@ -34,8 +34,8 @@ function isLowerScore(num) {
         //Three of a kind
         case 0:
             if (
-                Object.keys(props.diceCount).some(
-                    x => Object.keys(props.diceCount).filter(y => y === x).length >= 3,
+                Object.values(props.diceCount).some(
+                    x => Object.values(props.diceCount).filter(y => y === x).length >= 3,
                 ) === true
             ) {
                 addLowerScore(num);
@@ -44,14 +44,20 @@ function isLowerScore(num) {
 
         //Four of a kind
         case 1:
-            if (Object.keys(props.diceCount).some(x => props.diceCount.filter(y => y === x).length >= 4)) {
+            if (
+                Object.values(props.diceCount).some(
+                    x => Object.values(props.diceCount).filter(y => y === x).length >= 4,
+                )
+            ) {
                 addLowerScore(num);
             }
             break;
 
         //Full house
         case 2:
-            const fullHouseCount = [...new Set(props.diceCount)].map(x => props.diceCount.filter(y => y === x).length);
+            const fullHouseCount = [...new Set(Object.values(props.diceCount))].map(
+                x => Object.values(props.diceCount).filter(y => y === x).length,
+            );
 
             if (fullHouseCount.includes(2) && fullHouseCount.includes(3)) {
                 addLowerScore(num);
@@ -60,13 +66,13 @@ function isLowerScore(num) {
 
         //Small Straight
         case 3:
-            const isSmallStraight = false;
+            let isSmallStraight = false;
             for (let i = 1; i < 4; i++) {
                 if (
-                    props.diceCount.includes(i) &&
-                    props.diceCount.includes(i + 1) &&
-                    props.diceCount.includes(i + 2) &&
-                    props.diceCount.includes(i + 3)
+                    Object.values(props.diceCount).includes(i) &&
+                    Object.values(props.diceCount).includes(i + 1) &&
+                    Object.values(props.diceCount).includes(i + 2) &&
+                    Object.values(props.diceCount).includes(i + 3)
                 ) {
                     isSmallStraight = true;
                 }
@@ -78,14 +84,14 @@ function isLowerScore(num) {
 
         //Large Straight
         case 4:
-            const isLargeStraight = false;
+            let isLargeStraight = false;
             for (let i = 1; i < 4; i++) {
                 if (
-                    props.diceCount.includes(i) &&
-                    props.diceCount.includes(i + 1) &&
-                    props.diceCount.includes(i + 2) &&
-                    props.diceCount.includes(i + 3) &&
-                    props.diceCount.includes(i + 4)
+                    Object.values(props.diceCount).includes(i) &&
+                    Object.values(props.diceCount).includes(i + 1) &&
+                    Object.values(props.diceCount).includes(i + 2) &&
+                    Object.values(props.diceCount).includes(i + 3) &&
+                    Object.values(props.diceCount).includes(i + 4)
                 ) {
                     isLargeStraight = true;
                 }
@@ -97,7 +103,7 @@ function isLowerScore(num) {
 
         //Yahtzee
         case 5:
-            if (props.diceCount.some(y => props.diceCount.every(x => x === y))) {
+            if (Object.values(props.diceCount).some(y => Object.values(props.diceCount).every(x => x === y))) {
                 addLowerScore(num);
             }
             break;
